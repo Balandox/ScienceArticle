@@ -65,16 +65,11 @@ public class GraphCycleCounter {
 
         for(List<Integer> combination : combinations){
             System.out.println("comb + " + combination);
-            //int[] firstRow = Arrays.copyOf(matrix[combination.get(0)], matrix[0].length);
-            //int[] secondRow = Arrays.copyOf(matrix[combination.get(1)], matrix[0].length);;
-            int[] firstRow = matrix[combination.get(0)];
-            int[] secondRow = matrix[combination.get(1)];
+            int[] firstRow = Arrays.copyOf(matrix[combination.get(0)], matrix[0].length);
+            int[] secondRow = Arrays.copyOf(matrix[combination.get(1)], matrix[0].length);;
             System.out.println("f " + Arrays.toString(firstRow));
             System.out.println("s " + Arrays.toString(secondRow));
-            for(int i = 0; i < secondRow.length; i++)
-                if(secondRow[i] == 1)
-                    secondRow[i] = 2;
-            //this.replaceRowsElementsBeforeSum(4, secondRow);
+            this.replaceRowsElementsBeforeSum(4, secondRow);
             System.out.println("sr " + Arrays.toString(secondRow));
             int[] sumRow = this.getSumRow(firstRow, secondRow);
             System.out.println("sumRow " + Arrays.toString(sumRow));
