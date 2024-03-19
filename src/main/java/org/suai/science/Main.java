@@ -70,7 +70,7 @@ public class Main {
         AdjacencyMatrixGraph graph4 = new AdjacencyMatrixGraph(matrix, matrix.length, 10);
         System.out.println(graph4);
         GraphCycleCounter cycleCounter4 = new GraphCycleCounter(graph4);
-        System.out.println("Amount of 4-Cycles: " + cycleCounter4.countAmountCyclesWithLength(6));
+        System.out.println("Amount of 4-Cycles: " + cycleCounter4.countAmountCyclesWithLength(4));
     }
 
 
