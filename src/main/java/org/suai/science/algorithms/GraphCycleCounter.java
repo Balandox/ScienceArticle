@@ -38,12 +38,13 @@ public class GraphCycleCounter {
         List<Long> Pi = new ArrayList<>();
 
         for(List<Integer> combination : combinations){
-            int[] firstRow = matrix[combination.get(0)];
-            int[] secondRow = matrix[combination.get(1)];
-            int[] thirdRow = matrix[combination.get(2)];
+            int[] firstRow = Arrays.copyOf(matrix[combination.get(0)], matrix[0].length);
+            int[] secondRow = Arrays.copyOf(matrix[combination.get(1)], matrix[0].length);
+            int[] thirdRow = Arrays.copyOf(matrix[combination.get(2)], matrix[0].length);
             this.replaceRowsElementsBeforeSum(6, secondRow, thirdRow);
 
             int[] sumRow = this.getSumRow(firstRow, secondRow, thirdRow);
+            System.out.println("sumRow " + Arrays.toString(sumRow));
             int num3 = getAmountOfSpecifiedElemInRow(3, sumRow);
             int num5 = getAmountOfSpecifiedElemInRow(5, sumRow);
             int num6 = getAmountOfSpecifiedElemInRow(6, sumRow);

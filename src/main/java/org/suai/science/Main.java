@@ -23,14 +23,14 @@ public class Main {
         //System.out.println(graph);
 
 
-               int[][] matrix = {   //1; result 1
+/*               int[][] matrix = {   //1; result 1
                 {0,1,1,1,1,0},
                 {1,0,0,0,1,0},
                 {1,0,0,0,0,0},
                 {1,0,0,0,0,1},
                 {1,1,0,0,0,1},
                 {0,0,0,1,1,0}
-        };
+        };*/
 
 
 /*                int[][] matrix = {   //2; result 2
@@ -41,8 +41,8 @@ public class Main {
                 {1,0,1,1,0,0},
                 {1,0,1,0,0,0}
         };*/
-
-/*               int[][] matrix = {   //3 result 0
+/*
+               int[][] matrix = {   //3 result 0
                 {0,1,1,0,1},
                 {1,0,0,0,1},
                 {1,0,0,1,0},
@@ -50,14 +50,14 @@ public class Main {
                 {0,0,1,0,0}
         }; */
 
-        /*        int[][] matrix = {            //8; result 2
+                int[][] matrix = {            //8; result 2
                 {0,0,0,1,1,0},
                 {0,0,0,1,1,1},
                 {0,0,0,0,1,1},
                 {1,1,0,0,0,0},
                 {1,1,1,0,0,0},
                 {0,1,1,0,0,0}
-        };*/
+        };
 /*                int[][] matrix = {   //10 result >= 3
                 {0,1,1,0,0,1},
                 {1,0,0,1,1,0},
@@ -67,11 +67,13 @@ public class Main {
                 {1,0,1,0,1,0}
         };*/
 
-        AdjacencyMatrixGraph graph4 = new AdjacencyMatrixGraph(matrix, matrix.length, 0);
+        AdjacencyMatrixGraph graph4 = new AdjacencyMatrixGraph(matrix, matrix.length, 10);
         System.out.println(graph4);
         GraphCycleCounter cycleCounter4 = new GraphCycleCounter(graph4);
-        System.out.println("Amount of 4-Cycles: " + cycleCounter4.countAmountCyclesWithLength(4));
+        System.out.println("Amount of 4-Cycles: " + cycleCounter4.countAmountCyclesWithLength(6));
     }
+
+
 
 
 }
