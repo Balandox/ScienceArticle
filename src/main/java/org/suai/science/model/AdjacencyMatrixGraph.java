@@ -14,6 +14,16 @@ public class AdjacencyMatrixGraph {
         this.amountOfEdges = amountOfEdges;
     }
 
+    public AdjacencyMatrixGraph(AdjacencyMatrixGraph graph){
+        this.amountOfVertex = graph.getAmountOfVertex();
+        this.amountOfEdges = graph.getAmountOfEdges();
+        int[][] matrix = new int[amountOfVertex][amountOfVertex];
+        for(int i = 0; i < graph.getMatrix().length; i++)
+            for(int j = 0; j < graph.getMatrix()[i].length; j++)
+                matrix[i][j] = graph.getMatrix()[i][j];
+        this.matrix = matrix;
+    }
+
     public int[][] getMatrix() {
         return matrix;
     }
