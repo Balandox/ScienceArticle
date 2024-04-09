@@ -8,11 +8,12 @@ public class GraphCycleFinder {
 
     //  Graph modeled as list of edges
     static int[][] graph = {
-                    {0, 2}, {0, 4}, {0, 5}, // по сути матрица из 8 строк и двух столбцов
-                    {1, 3},                   // [0,2], то есть graph[0, 1] - 2, graph[0,4] - OutOfBoundException
-                    {2, 3}, {2, 4}, {2,5},    // [0,4]
-                    {3, 4}
-            };
+                    {0, 2}, {0,3}, {0,5},
+                    {1, 2}, {1,3}, {1, 5}, {1,7}, // по сути матрица из 8 строк и двух столбцов
+                    {2, 3}, {2, 6}, {2,7},           // [0,2], то есть graph[0, 1] - 2, graph[0,4] - OutOfBoundException
+                    {3, 4},
+                    {4, 5}, {4, 6}, {4,7}
+    };
 
     static List<int[]> cycles = new ArrayList<int[]>();
 

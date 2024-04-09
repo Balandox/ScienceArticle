@@ -15,7 +15,7 @@ public class Main {
         Boolean isGraphFullyConnected = false;
         DfsCalculation dfsCalculation = new DfsCalculation();
         do {
-            graph = GraphGeneration.generateGraph(6);
+            graph = GraphGeneration.generateGraph(8);
             dfsCalculation.setGraph(graph);
             isGraphFullyConnected = dfsCalculation.isFullyConnectedGraph();
         }
@@ -50,14 +50,14 @@ public class Main {
                 {0,0,1,0,0}
         }; */
 
-                int[][] matrix = {            //8; result 2
+/*                int[][] matrix = {            //8; result 2
                 {0,0,0,1,1,0},
                 {0,0,0,1,1,1},
                 {0,0,0,0,1,1},
                 {1,1,0,0,0,0},
                 {1,1,1,0,0,0},
                 {0,1,1,0,0,0}
-        };
+        };*/
 /*                int[][] matrix = {   //10 result >= 3
                 {0,1,1,0,0,1},
                 {1,0,0,1,1,0},
@@ -66,11 +66,42 @@ public class Main {
                 {0,1,0,0,0,1},
                 {1,0,1,0,1,0}
         };*/
+/*        int[][] matrix = { // 1 tg (6 cycles: dfs - 0, alg - 11) isn't working
+                {0,0,0,0,1,0},
+                {0,0,0,1,0,1},
+                {0,0,0,1,1,0},
+                {0,1,1,0,1,1},
+                {1,0,1,1,0,1},
+                {0,1,0,1,1,0}
+        };*/
 
-        AdjacencyMatrixGraph graph4 = new AdjacencyMatrixGraph(matrix, matrix.length, 10);
-        System.out.println(graph4);
-        GraphCycleCounter cycleCounter4 = new GraphCycleCounter(graph4);
-        System.out.println("Amount of 4-Cycles: " + cycleCounter4.countAmountCyclesWithLength(4));
+/*
+        int[][] matrix = { // 2 tg (6 cycles: dfs - 0, alg - 4) isn't working
+                {0,0,1,1,0,0},
+                {0,0,0,1,1,1},
+                {1,0,0,0,0,0},
+                {1,1,0,0,0,1},
+                {0,1,0,0,0,1},
+                {0,1,0,1,1,0}
+        };
+*/
+
+        int[][] matrix = { // 3 tg (8 cycles: dfs - 3, alg - 18) isn't working
+                {0,0,1,1,0,1,0,0},
+                {0,0,1,1,0,1,0,1},
+                {1,1,0,1,0,0,1,1},
+                {1,1,1,0,1,0,0,0},
+                {0,0,0,1,0,1,1,1},
+                {1,1,0,0,1,0,0,0},
+                {0,0,1,0,1,0,0,0},
+                {0,1,1,0,1,0,0,0}
+        };
+        AdjacencyMatrixGraph graph8 = new AdjacencyMatrixGraph(matrix, matrix.length, 10);
+        System.out.println(graph8);
+        //System.out.println(graph);
+        GraphCycleCounter cycleCounter = new GraphCycleCounter(graph8);
+        System.out.println("Amount of 8-Cycles: " + cycleCounter.countAmountCyclesWithLength(8));
+
     }
 
 
