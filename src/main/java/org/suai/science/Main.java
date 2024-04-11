@@ -2,10 +2,13 @@ package org.suai.science;
 
 import org.suai.science.algorithms.DfsCalculation;
 import org.suai.science.algorithms.GraphCycleCounter;
+import org.suai.science.algorithms.GraphCycleFinder;
 import org.suai.science.generation.GraphGeneration;
 import org.suai.science.model.AdjacencyMatrixGraph;
+import org.suai.science.utils.BipartiteCheckingUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -13,14 +16,17 @@ public class Main {
     public static void main(String[] args) {
         AdjacencyMatrixGraph graph = null;
         Boolean isGraphFullyConnected = false;
+        Boolean isBipartiteGraph = false;
+        int count = 0;
         DfsCalculation dfsCalculation = new DfsCalculation();
         do {
-            graph = GraphGeneration.generateGraph(8);
+            graph = GraphGeneration.generateGraph(14);
             dfsCalculation.setGraph(graph);
             isGraphFullyConnected = dfsCalculation.isFullyConnectedGraph();
+            isBipartiteGraph = BipartiteCheckingUtil.isBipartite(graph);
         }
-        while (!isGraphFullyConnected);
-        //System.out.println(graph);
+        while (!isGraphFullyConnected || !isBipartiteGraph);
+        System.out.println(isGraphFullyConnected + " " + isBipartiteGraph);
 
 
 /*               int[][] matrix = {   //1; result 1
@@ -86,7 +92,7 @@ public class Main {
         };
 */
 
-        int[][] matrix = { // 3 tg (8 cycles: dfs - 3, alg - 18) isn't working
+        /*int[][] matrix = { // 3 tg (8 cycles: dfs - 3, alg - 18) isn't working
                 {0,0,1,1,0,1,0,0},
                 {0,0,1,1,0,1,0,1},
                 {1,1,0,1,0,0,1,1},
@@ -95,12 +101,18 @@ public class Main {
                 {1,1,0,0,1,0,0,0},
                 {0,0,1,0,1,0,0,0},
                 {0,1,1,0,1,0,0,0}
-        };
-        AdjacencyMatrixGraph graph8 = new AdjacencyMatrixGraph(matrix, matrix.length, 10);
-        System.out.println(graph8);
-        //System.out.println(graph);
-        GraphCycleCounter cycleCounter = new GraphCycleCounter(graph8);
-        System.out.println("Amount of 8-Cycles: " + cycleCounter.countAmountCyclesWithLength(8));
+        };*/
+        //AdjacencyMatrixGraph graph8 = new AdjacencyMatrixGraph(matrix, matrix.length, 10);
+        System.out.println(graph);
+        int[][] edgesListGraph = GraphGeneration.convertAdjacencyMatrixToEdgesList(graph);
+        GraphCycleFinder.launchCycleFinder(edgesListGraph);
+        GraphCycleCounter cycleCounter4 = new GraphCycleCounter(new AdjacencyMatrixGraph(graph));
+        GraphCycleCounter cycleCounter6 = new GraphCycleCounter(graph);
+        //GraphCycleCounter cycleCounter8 = new GraphCycleCounter(new AdjacencyMatrixGraph(graph));
+        System.out.println("Amount of 4-Cycles: " + cycleCounter4.countAmountCyclesWithLength(4));
+        System.out.println("Amount of 6-Cycles: " + cycleCounter6.countAmountCyclesWithLength(6));
+        //System.out.println("Amount of 8-Cycles: " + cycleCounter8.countAmountCyclesWithLength(8));
+
 
     }
 

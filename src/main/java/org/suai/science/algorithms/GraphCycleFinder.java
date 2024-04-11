@@ -7,23 +7,33 @@ import java.util.List;
 public class GraphCycleFinder {
 
     //  Graph modeled as list of edges
-    static int[][] graph = {
+/*    static int[][] graph = {
                     {0, 2}, {0,3}, {0,5},
                     {1, 2}, {1,3}, {1, 5}, {1,7}, // по сути матрица из 8 строк и двух столбцов
                     {2, 3}, {2, 6}, {2,7},           // [0,2], то есть graph[0, 1] - 2, graph[0,4] - OutOfBoundException
                     {3, 4},
                     {4, 5}, {4, 6}, {4,7}
-    };
+    };*/
 
     static List<int[]> cycles = new ArrayList<int[]>();
 
-    public static void main(String[] args) {
+    public static void launchCycleFinder(int[][] graph) {
 
         for (int i = 0; i < graph.length; i++)
             for (int j = 0; j < graph[i].length; j++)
-                findNewCycles(new int[] {graph[i][j]}); // передаем внутрь массив, в который уже положили одну вершину (алгоритм берет в качестве старта все вершины графа)
+                findNewCycles(new int[] {graph[i][j]}, graph); // передаем внутрь массив, в который уже положили одну вершину (алгоритм берет в качестве старта все вершины графа)
+
+        int amountFourCycle = 0;
+        int amountSixCycle = 0;
+        int amountEightCycle = 0;
 
         for (int[] cy : cycles) {
+            if(cy.length == 4)
+                amountFourCycle++;
+            else if(cy.length == 6)
+                amountSixCycle++;
+            else if(cy.length == 8)
+                amountEightCycle++;
             String s = "" + cy[0];
             for (int i = 1; i < cy.length; i++)
             {
@@ -32,10 +42,13 @@ public class GraphCycleFinder {
 
             o(s);
         }
+        System.out.println("Amount of cycles 4-length = " + amountFourCycle);
+        System.out.println("Amount of cycles 6-length = " + amountSixCycle);
+        System.out.println("Amount of cycles 8-length = " + amountEightCycle);
 
     }
 
-    static void findNewCycles(int[] path) {
+    static void findNewCycles(int[] path, int[][] graph) {
         int n = path[0]; // текущая вершина в пути (крайняя на данный момент)
         // а в конце массива path содержится наша изначальная вершина пути (на ней должен замыкаться цикл)
         int x;
@@ -53,7 +66,7 @@ public class GraphCycleFinder {
                         sub[0] = x;
                         System.arraycopy(path, 0, sub, 1, path.length);
                         //  и углубляемся дальше
-                        findNewCycles(sub);
+                        findNewCycles(sub, graph);
                     }
                     // если в пути как минимум 3 вершины и путь привел в начальную вершину
                     else if ((path.length > 2) && (x == path[path.length - 1])) {

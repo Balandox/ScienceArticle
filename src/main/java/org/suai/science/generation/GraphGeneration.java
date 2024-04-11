@@ -2,7 +2,7 @@ package org.suai.science.generation;
 
 import org.suai.science.model.AdjacencyMatrixGraph;
 
-import java.util.Random;
+import java.util.*;
 
 public class GraphGeneration {
 
@@ -22,6 +22,26 @@ public class GraphGeneration {
             }
         }
         return new AdjacencyMatrixGraph(adjacencyMatrix, numVertices, amountOfEdges);
+    }
+
+    public static int[][] convertAdjacencyMatrixToEdgesList(AdjacencyMatrixGraph graph){
+        int[][] matrix = graph.getMatrix();
+        List<int[]> edgesList = new ArrayList<>();
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = 0; j < matrix[i].length; j++){
+                if(matrix[i][j] == 1 && !isAlreadyInList(edgesList, i, j))
+                    edgesList.add(new int[] {i, j});
+            }
+        }
+        return edgesList.toArray(new int[0][0]);
+    }
+
+    private static boolean isAlreadyInList(List<int[]> edgesList, int i, int j){
+        for(int[] tmp : edgesList){
+            if((tmp[0] == i && tmp[1] == j) || (tmp[0] == j && tmp[1] == i))
+                return true;
+        }
+        return false;
     }
 
 }

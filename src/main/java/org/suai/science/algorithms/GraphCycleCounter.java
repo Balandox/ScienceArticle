@@ -45,13 +45,13 @@ public class GraphCycleCounter {
             int[] thirdRow = Arrays.copyOf(matrix[combination.get(2)], matrix[0].length);
             int[] fourthRow = Arrays.copyOf(matrix[combination.get(3)], matrix[0].length);
             this.replaceRowsElementsBeforeSum(8, secondRow, thirdRow, fourthRow);
-            System.out.println("fir" + Arrays.toString(firstRow));
-            System.out.println("sec" + Arrays.toString(secondRow));
-            System.out.println("thi" + Arrays.toString(thirdRow));
-            System.out.println("fou" + Arrays.toString(fourthRow));
+            //System.out.println("fir" + Arrays.toString(firstRow));
+            //System.out.println("sec" + Arrays.toString(secondRow));
+            //System.out.println("thi" + Arrays.toString(thirdRow));
+            //System.out.println("fou" + Arrays.toString(fourthRow));
 
             int[] sumRow = this.getSumRow(firstRow, secondRow, thirdRow, fourthRow);
-            System.out.println("sumRow" + Arrays.toString(sumRow));
+            //System.out.println("sumRow" + Arrays.toString(sumRow));
             int num3 = getAmountOfSpecifiedElemInRow(3, sumRow);
             int num5 = getAmountOfSpecifiedElemInRow(5, sumRow);
             int num6 = getAmountOfSpecifiedElemInRow(6, sumRow);
@@ -59,8 +59,8 @@ public class GraphCycleCounter {
             int num10 = getAmountOfSpecifiedElemInRow(10, sumRow);
             int num12 = getAmountOfSpecifiedElemInRow(12, sumRow);
             long pi = (((long) num3*num12*num5*num10) + ((long) num3*num6*num9*num12) + ((long) num5*num6*num9*num10));
-            System.out.println("pi = " + pi + " on combination " + combination);
-            System.out.println();
+            //System.out.println("pi = " + pi + " on combination " + combination);
+            //System.out.println();
             Pi.add(pi);
         }
 
@@ -79,19 +79,19 @@ public class GraphCycleCounter {
             int[] secondRow = Arrays.copyOf(matrix[combination.get(1)], matrix[0].length);
             int[] thirdRow = Arrays.copyOf(matrix[combination.get(2)], matrix[0].length);
             this.replaceRowsElementsBeforeSum(6, secondRow, thirdRow);
-            System.out.println("fir" + Arrays.toString(firstRow));
-            System.out.println("sec" + Arrays.toString(secondRow));
-            System.out.println("thi" + Arrays.toString(thirdRow));
+            //System.out.println("fir" + Arrays.toString(firstRow));
+            //System.out.println("sec" + Arrays.toString(secondRow));
+            //System.out.println("thi" + Arrays.toString(thirdRow));
 
             int[] sumRow = this.getSumRow(firstRow, secondRow, thirdRow);
-            System.out.println("sumRow" + Arrays.toString(sumRow));
+            //System.out.println("sumRow" + Arrays.toString(sumRow));
             int num3 = getAmountOfSpecifiedElemInRow(3, sumRow);
             int num5 = getAmountOfSpecifiedElemInRow(5, sumRow);
             int num6 = getAmountOfSpecifiedElemInRow(6, sumRow);
             int num7 = getAmountOfSpecifiedElemInRow(7, sumRow);
             long pi = (((long) num3*num6*num5) + ((long) num7*num6*num5) + ((long) num3*num7*num5) + ((long) num3*num6*num7));
-            System.out.println("pi = " + pi + " on combination " + combination);
-            System.out.println();
+            //System.out.println("pi = " + pi + " on combination " + combination);
+            //System.out.println();
             Pi.add(pi);
         }
 
