@@ -13,6 +13,10 @@ public class GraphCycleCounter {
 
     private AdjacencyMatrixGraph graph;
 
+    static int amountOfChanging = 0;
+    static int amountOfSum;
+    static int amountOfFinding;
+
     public GraphCycleCounter(AdjacencyMatrixGraph graph) {
         this.graph = graph;
     }
@@ -79,22 +83,31 @@ public class GraphCycleCounter {
             int[] secondRow = Arrays.copyOf(matrix[combination.get(1)], matrix[0].length);
             int[] thirdRow = Arrays.copyOf(matrix[combination.get(2)], matrix[0].length);
             this.replaceRowsElementsBeforeSum(6, secondRow, thirdRow);
+            amountOfChanging += 2;
             //System.out.println("fir" + Arrays.toString(firstRow));
             //System.out.println("sec" + Arrays.toString(secondRow));
             //System.out.println("thi" + Arrays.toString(thirdRow));
 
             int[] sumRow = this.getSumRow(firstRow, secondRow, thirdRow);
+            amountOfSum += 2;
             //System.out.println("sumRow" + Arrays.toString(sumRow));
             int num3 = getAmountOfSpecifiedElemInRow(3, sumRow);
             int num5 = getAmountOfSpecifiedElemInRow(5, sumRow);
             int num6 = getAmountOfSpecifiedElemInRow(6, sumRow);
             int num7 = getAmountOfSpecifiedElemInRow(7, sumRow);
+            amountOfFinding += 4;
             long pi = (((long) num3*num6*num5) + ((long) num7*num6*num5) + ((long) num3*num7*num5) + ((long) num3*num6*num7));
             //System.out.println("pi = " + pi + " on combination " + combination);
             //System.out.println();
+            if(pi != 0) {
+                System.out.println("comb: " + combination);
+                System.out.println("sumRow: " + Arrays.toString(sumRow));
+            }
             Pi.add(pi);
         }
-
+        System.out.println("amountOfChanging: " + amountOfChanging);
+        System.out.println("amountOfSum: " + amountOfSum);
+        System.out.println("amountOfFinding: " + amountOfFinding);
         return CycleCounterUtil.calculateTotalNumberOfCycles(Pi);
     }
 
@@ -109,12 +122,22 @@ public class GraphCycleCounter {
             int[] firstRow = Arrays.copyOf(matrix[combination.get(0)], matrix[0].length);
             int[] secondRow = Arrays.copyOf(matrix[combination.get(1)], matrix[0].length);
             this.replaceRowsElementsBeforeSum(4, secondRow);
+            amountOfChanging++;
             int[] sumRow = this.getSumRow(firstRow, secondRow);
+            amountOfSum++;
             int num3 = getAmountOfSpecifiedElemInRow(3, sumRow);
+            amountOfFinding++;
             long pi = CycleCounterUtil.nCr(num3, 2);
+            if(pi != 0) {
+                System.out.println("comb: " + combination);
+                System.out.println("sumRow: " + Arrays.toString(sumRow));
+            }
             Pi.add(pi);
         }
-
+        System.out.println("----------------------------------------------------");
+        System.out.println("amountOfChanging: " + amountOfChanging);
+        System.out.println("amountOfSum: " + amountOfSum);
+        System.out.println("amountOfFinding: " + amountOfFinding);
         return CycleCounterUtil.calculateTotalNumberOfCycles(Pi);
     }
 

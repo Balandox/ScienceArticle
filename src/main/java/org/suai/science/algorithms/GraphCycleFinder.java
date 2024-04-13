@@ -17,6 +17,11 @@ public class GraphCycleFinder {
 
     static List<int[]> cycles = new ArrayList<int[]>();
 
+    static  int amountOfAdjacencyCheck = 0;
+    static int amountOfVisitedCheck = 0;
+
+    static int amountOfCycleCounting = 0;
+
     public static void launchCycleFinder(int[][] graph) {
 
         for (int i = 0; i < graph.length; i++)
@@ -27,6 +32,7 @@ public class GraphCycleFinder {
         int amountSixCycle = 0;
         int amountEightCycle = 0;
 
+        amountOfCycleCounting = cycles.size();
         for (int[] cy : cycles) {
             if(cy.length == 4)
                 amountFourCycle++;
@@ -44,7 +50,10 @@ public class GraphCycleFinder {
         }
         System.out.println("Amount of cycles 4-length = " + amountFourCycle);
         System.out.println("Amount of cycles 6-length = " + amountSixCycle);
-        System.out.println("Amount of cycles 8-length = " + amountEightCycle);
+        System.out.println("amountOfAdjacencyCheck = " + amountOfAdjacencyCheck);
+        System.out.println("amountOfVisitedCheck = " + amountOfVisitedCheck);
+        System.out.println("amountOfCycleCounting = " + amountOfCycleCounting);
+        //System.out.println("Amount of cycles 8-length = " + amountEightCycle);
 
     }
 
@@ -57,9 +66,11 @@ public class GraphCycleFinder {
         // Итерируемся по всем рёбрам графа
         for (int i = 0; i < graph.length; i++) {
             for (int y = 0; y <= 1; y++) {
+                amountOfAdjacencyCheck++;
                 if (graph[i][y] == n) { // если ребро относится к текущей вершине
                     // получаем смежную вершину, в которую ведет данное ребро
                     x = graph[i][(y + 1) % 2];
+                    amountOfVisitedCheck++;
 
                     if (!visited(x, path)) {
                         // если смежная вершина не встречалась ранее в пути, то делаем ее текущей
